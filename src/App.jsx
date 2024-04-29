@@ -1,19 +1,12 @@
 import { useContext, useEffect, useState } from 'react';
 import './App.css';
-import { Contex } from './Context/Context';
+import ContextProvider, { Context } from "./Context/Context";
 
 
 function App() {
-  const value = useContext(Contex)
-  const [products, setProducts] = useState([])
+const {products} = useContext(Context)
+ 
   const [product, setProduct] = useState({})
-
-  useEffect(() => {
-
-    fetch('https://fakestoreapi.com/products/')
-    .then(res=>res.json())
-      .then((data) => setProducts(data))
-  }, [])
   return (
     <div className="App">
         <div className="container">
