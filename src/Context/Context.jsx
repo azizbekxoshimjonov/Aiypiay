@@ -6,9 +6,14 @@ const ContextProvider = (props) => {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
+        // Ma'lumotlar kelayotganini tekshirish uchun konsolga chiqaramiz
         fetch('https://fakestoreapi.com/products/')
             .then(res => res.json())
-            .then(data => setProducts(data))
+            .then(data => {
+                console.log("Fetched data:", data); // Ma'lumotlarni tekshirish
+                setProducts(data);
+            })
+            .catch(error => console.error("Error fetching data:", error)); // Xato bo'lsa konsolga chiqarish
     }, []);
 
     return (
@@ -19,4 +24,3 @@ const ContextProvider = (props) => {
 };
 
 export default ContextProvider;
-

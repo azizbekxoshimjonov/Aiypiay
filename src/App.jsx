@@ -1,54 +1,15 @@
-import { useContext, useEffect, useState } from 'react';
+import { Route, Routes } from 'react-router-dom';
 import './App.css';
-import ContextProvider, { Context } from "./Context/Context";
-
+import Home from './Components/Home/Home';
+import Detalpage from './Components/Detalpage/Detalpage';
 
 function App() {
-const {products} = useContext(Context)
- 
-  const [product, setProduct] = useState({})
   return (
     <div className="App">
-        <div className="container">
-      <ul>
-        {
-         products.map((item, index)=>(
-            <li key={index} className='d-flex align-items-center'>
-             <img width={100} height={170} src={item.image} alt="" />
-              <h2 className='title'>{item.title}</h2>
-              <h3>{item.price}$</h3>
-              <p>{item.category}</p>
-              <p>{item.id}</p>
-              <p></p>
-              <button onClick={()=> setProduct(item)} className='btn btn-info text-light 'data-bs-toggle="modal" data-bs-target="#exampleModal">More</button>
-            </li>
-            ))
-          }
-      </ul>
-      <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div className="modal-dialog">
-    <div className="modal-content">
-      <div className="modal-header">
-        <h1 className="modal-title fs-5" id="exampleModalLabel"></h1>
-        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div className="modal-body">
-        <h2>{product.price}  $</h2>
-        <p>{product.description}</p>
-        <h2>{product.category}</h2>
-        
-      </div>
-      <div className="modal-footer">
-        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" className="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
-      </div>
-      
-      
-
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path='/Detalpage' element={<Detalpage />} />
+      </Routes>
     </div>
   );
 }
